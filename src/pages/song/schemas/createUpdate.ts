@@ -3,21 +3,33 @@ import { ISchemaCreateUpdate } from "../interfaces";
 
 export const schemaCreateUpdate = (): Record<ISchemaCreateUpdate, ISchema> => ({
   title: {
-    name: 'title',
+    name: "title",
     validations: {
-      required: 'Este campo es requerido',
+      required: "Este campo es requerido",
     },
   },
-  description: {
-    name: 'description',
+  artist: {
+    name: "artist",
     validations: {
-      required: 'Este campo es requerido',
+      required: "Este campo es requerido",
     },
   },
-  state: {
-    name: 'state',
+  year: {
+    name: "year",
     validations: {
-      required: 'Este campo es requerido',
+      required: "Este campo es requerido",
     },
-  }
+  },
+  genre: {
+    name: "genre",
+    validations: {
+      required: "Este campo es requerido",
+    },
+  },
+  coverImages: {
+    name: "coverImages",
+    validations: {
+      required: "Este campo es requerido",
+    },
+  },
 });

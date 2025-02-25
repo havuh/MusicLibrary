@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { redirect, useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Button, Paper, Stack } from "@mui/material";
 import Grid from "@mui/material/Grid2";
@@ -10,9 +10,7 @@ import {
   FormController,
   FormWrapper,
   Loading,
-  SelectController,
 } from "@/components";
-import { state } from "@/data";
 import { songRoutes } from "@/routes";
 import { IApiResponse, IFormWrapperRef } from "@/interface";
 import { useAlert } from "@/hooks";
@@ -40,7 +38,10 @@ const SongCreateUpdatePage = () => {
   };
 
   const onSubmitSuccess = async (dataSend: ISongCreateUpdate) => {
-    if (id) await updateSong(id, dataSend).then(pipe(handleAlert));
+    if (id)
+      await updateSong(id, dataSend)
+        .then(pipe(handleAlert))
+        .then(() => redirect(songRoutes.get));
     else await createSong(dataSend).then(pipe(handleAlert));
     setOpen(false);
   };
@@ -52,13 +53,12 @@ const SongCreateUpdatePage = () => {
     ref.current!.submit(onSubmitSuccess, handleCloseModal);
 
   const getDataById = async (id: string) => {
-    const { data } = await songById(id);
-    updateFormValues(data, setValue);
+    const response = await songById(id);
+    updateFormValues(response.data, setValue);
   };
 
   useEffect(() => {
     if (id) getDataById(id);
-    else setValue("state", "1");
   }, []);
 
   return (
@@ -70,15 +70,16 @@ const SongCreateUpdatePage = () => {
               <FormController schema={schema.title} label="Titulo" />
             </Grid>
             <Grid size={{ xs: 12, md: 4, lg: 3 }}>
-              <FormController schema={schema.description} label="Descripción" />
+              <FormController schema={schema.artist} label="Artista" />
             </Grid>
             <Grid size={{ xs: 12, md: 4, lg: 3 }}>
-              <SelectController
-                data={state}
-                schema={schema.state}
-                label="Estado"
-                disabled={!id}
-              />
+              <FormController schema={schema.year} label="Año" />
+            </Grid>
+            <Grid size={{ xs: 12, md: 4, lg: 3 }}>
+              <FormController schema={schema.genre} label="Género" />
+            </Grid>
+            <Grid size={{ xs: 12, md: 4, lg: 3 }}>
+              <FormController schema={schema.coverImages} label="Covers" />
             </Grid>
           </Grid>
         </FormWrapper>

@@ -38,12 +38,11 @@ export const useSong = () => {
   const songById = async (id: string): Promise<IApiResponse<ISong>> => {
     setIsLoadingUpdate(true);
     try {
-      const response: AxiosResponse<IApiResponse<ISong>> = await getApi(
+      const response: AxiosResponse<ISong> = await getApi(
         `${songRoutes}/${id}`,
       );
-      const { data, message, status } = response.data;
 
-      return { data, message, status };
+      return { message: "Ok", data: response.data, status: 200 };
     } catch (_) {
       return { message: "Ocurrio un error.", data: song, status: 500 };
     } finally {
@@ -117,6 +116,6 @@ export const useSong = () => {
     isLoadingUpdate,
     isLoadingDelete,
     updateSong,
-    deleteSong
+    deleteSong,
   };
 };
