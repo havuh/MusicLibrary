@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IconButton, TableCell, TableRow, Tooltip } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
@@ -11,6 +11,7 @@ import { useSong } from "@/pages/song/hooks";
 import { pipe } from "@/util";
 import { IApiResponse } from "@/interface";
 import { useAlert } from "@/hooks";
+import FsLightbox from "fslightbox-react";
 
 const headTable = [
   { name: "Título" },
@@ -47,6 +48,14 @@ const ListTableModule = ({ dataTable }: { dataTable: ISong[] }) => {
       .finally(() => fetchListAll());
   };
 
+  const [lightboxToggles, setLightboxToggles] = useState<{
+    [key: number]: boolean;
+  }>({});
+
+  const toggleLightbox = (id: number) => {
+    setLightboxToggles((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
   return (
     <ListRegister
       count={count}
@@ -67,11 +76,26 @@ const ListTableModule = ({ dataTable }: { dataTable: ISong[] }) => {
               <TableCell align="center">{row?.year}</TableCell>
               <TableCell align="center">{row?.genre}</TableCell>
               <TableCell align="center">
-                <img
-                  src={row?.coverImages?.[0] ?? ""}
-                  alt={row?.title}
-                  width={"auto"}
-                  height={70}
+                <button
+                  onClick={() => toggleLightbox(row.id)}
+                  style={{
+                    cursor: "pointer",
+                    border: "none",
+                    background: "none",
+                  }}
+                >
+                  <img
+                    src={row?.coverImages?.[0] ?? ""}
+                    alt={row?.title}
+                    width={"auto"}
+                    height={70}
+                  />
+                </button>
+                <FsLightbox
+                  key={row.id}
+                  toggler={lightboxToggles[row.id] ?? false}
+                  zoomIncrement={0.5}
+                  sources={row?.coverImages ?? []}
                 />
               </TableCell>
               <TableCell align="center">
