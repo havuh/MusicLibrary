@@ -56,12 +56,13 @@ const FormModule = () => {
         <h2 className={`${prefix}__title`}>Iniciar sesión</h2>
         <Grid container rowSpacing={2}>
           <Grid size={12}>
-            <FormController schema={schema.email} label="Correo" />
+            <FormController schema={schema.email} label="Correo" defaultValue="al.mj@gmail.com" />
           </Grid>
           <Grid size={12}>
             <FormController
               schema={schema.password}
               label="Contraseña"
+              defaultValue="1234"
               type={showPassword ? "text" : "password"}
               InputProps={{
                 endAdornment: (
