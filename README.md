@@ -1,5 +1,7 @@
 # Proyecto Reto-React
 
+El proyecto consiste en una aplicación web con un listado de música. Se puede añadir, editar y eliminar cada canción.
+
 ## Instalación
 
 Para instalar las dependencias del proyecto, se recomienda usar el siguiente comando con la opción `--legacy-peer-deps`.
@@ -18,6 +20,16 @@ npm i --legacy-peer-deps
 - `src/`: Contiene el código fuente del proyecto.
 - `public/`: Contiene archivos estáticos.
 
+
+# Endpoints
+La aplicación consume de una API basada en JSON-SERVER disponible `https://reactchallengeapi-production.up.railway.app`.
+El API dispone de los siguientes endpoints:
+
+- `/login` (POST): Inicia sesión con un correo electrónico y contraseña. Como parte de la respuesta retorna un JWT.
+- `/songs` (GET): Retorna un listado de canciones almacenadas en JSON-SERVER.
+- `/songs/:id` (GET, PUT, DELETE): Permite ver el detalle, editar y eliminar una canción del servidor.
+
+> ⚠️ **Advertencia:** Cualquier acción realizada a través de los endpoints es reflejada para cualquier usuario que tenga acceso a estos, por lo que si se edita o elimina una canción lo hará para todos los usuarios. 
 
 # Uso de Patrones en el Proyecto
 

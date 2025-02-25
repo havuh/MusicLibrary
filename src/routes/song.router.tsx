@@ -14,12 +14,8 @@ export const songRoute: RouteObject[] = [
     path: songRoutes.get,
     async lazy() {
       const [{ SongListProvider }, { SongListPage }] = await Promise.all([
-        import(
-          "@/pages/song/pages/list/context"
-        ),
-        import(
-          "@/pages/song/pages/list"
-        ),
+        import("@/pages/song/pages/list/context"),
+        import("@/pages/song/pages/list"),
       ]);
       return {
         Component: () => (

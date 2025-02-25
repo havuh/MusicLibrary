@@ -6,9 +6,7 @@ import { songRoute } from "./song.router";
 export const menuRoute = {
   path: "",
   async lazy() {
-    const { Dashboard } = await import(
-      /* webpackChunkName: "LazyDasboard" */ "@/pages"
-    );
+    const { Dashboard } = await import("@/pages");
     return { Component: Dashboard };
   },
   loader: () => authenticationRouter(true),
@@ -16,9 +14,7 @@ export const menuRoute = {
     {
       path: "/menu",
       async lazy() {
-        const { Welcome } = await import(
-          /* webpackChunkName: "LazyWelcome" */ "@/pages"
-        );
+        const { Welcome } = await import("@/pages");
         return { Component: Welcome };
       },
       loader: () => authenticationRouter(true),

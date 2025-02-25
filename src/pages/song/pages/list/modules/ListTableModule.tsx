@@ -96,6 +96,7 @@ const ListTableModule = ({ dataTable }: { dataTable: ISong[] }) => {
                   toggler={lightboxToggles[row.id] ?? false}
                   zoomIncrement={0.5}
                   sources={row?.coverImages ?? []}
+                  showThumbsOnMount={true}
                 />
               </TableCell>
               <TableCell align="center">
