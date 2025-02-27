@@ -1,6 +1,6 @@
 # Proyecto Reto-React
 
-El proyecto consiste en una aplicación web con un listado de música. Se puede añadir, editar y eliminar cada canción.
+El proyecto consiste en una aplicación web con un listado de canciones. Se puede añadir, editar y eliminar cada canción.
 
 ## Instalación
 
