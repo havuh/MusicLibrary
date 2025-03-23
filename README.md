@@ -1,4 +1,4 @@
-# Proyecto Reto-React
+# Biblioteca de música
 
 El proyecto consiste en una aplicación web con un listado de canciones. Se puede añadir, editar y eliminar cada canción.
 
